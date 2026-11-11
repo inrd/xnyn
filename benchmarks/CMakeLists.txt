@@ -1,7 +1,8 @@
 add_executable(xnyn_benchmarks
         math/fast_tanh_bench.cpp
         math/lerp_bench.cpp
-        osc/phasor_bench.cpp)
+        osc/phasor_bench.cpp
+        util/sanitize_bench.cpp)
 
 target_link_libraries(xnyn_benchmarks PRIVATE xnyn::xnyn Catch2::Catch2WithMain)
 
