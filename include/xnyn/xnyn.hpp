@@ -4,6 +4,7 @@
 
 #include "xnyn/filter/dc_blocker.hpp"
 #include "xnyn/math/bilerp.hpp"
+#include "xnyn/math/decibels.hpp"
 #include "xnyn/math/equal_power_crossfade.hpp"
 #include "xnyn/math/fast_pow.hpp"
 #include "xnyn/math/fast_sin.hpp"

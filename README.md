@@ -10,6 +10,7 @@ Minimalist, performance-focused C++20 DSP building blocks.
 |---|---|---|
 | [`DcBlocker`](docs/filter/dc_blocker.md) | `xnyn/filter/dc_blocker.hpp` | One-pole DC blocker, cutoff in Hz, no step overshoot, `double` state for low cutoffs |
 | [`bilerp`](docs/math/bilerp.md) | `xnyn/math/bilerp.hpp` | Branchless bilinear interpolation between four corners, exact for constant fields |
+| [`dbToGain` / `gainToDb`](docs/math/decibels.md) | `xnyn/math/decibels.hpp` | Branchless dB ↔ gain conversions via `fastExp2` / `fastLog2`, magnitude-based, optional dB floor |
 | [`equalPowerCrossfade`](docs/math/equal_power_crossfade.md) | `xnyn/math/equal_power_crossfade.hpp` | Sine / cosine crossfade with constant power, gains via `fastSin`, exact endpoints |
 | [`fastExp2` / `fastLog2` / `fastPow`](docs/math/fast_pow.md) | `xnyn/math/fast_pow.hpp` | Branchless polynomial `2^x`, `log2` and `pow`, max rel error 2e-9 / 2.7e-8 (double), 1e-7 / 2.4e-7 (float) |
 | [`fastSin`](docs/math/fast_sin.md) | `xnyn/math/fast_sin.hpp` | Branchless polynomial `sin(2π·phase)`, phase in cycles, max abs error 6e-8 (double) / 2.1e-7 (float), FM-grade |

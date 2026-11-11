@@ -1,6 +1,7 @@
 add_executable(xnyn_benchmarks
         filter/dc_blocker_bench.cpp
-        math/bilerp_bench.cpp        math/equal_power_crossfade_bench.cpp        math/fast_pow_bench.cpp
+        math/bilerp_bench.cpp        math/decibels_bench.cpp
+        math/equal_power_crossfade_bench.cpp        math/fast_pow_bench.cpp
         math/fast_sin_bench.cpp
         math/fast_tanh_bench.cpp
         math/lerp_bench.cpp
