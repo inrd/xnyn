@@ -8,6 +8,7 @@ Minimalist, performance-focused C++20 DSP building blocks.
 
 | Block | Header | Description |
 |---|---|---|
+| `fastTanh` | `xnyn/math/fast_tanh.hpp` | Branchless rational tanh approximation, max abs error 0.0236 |
 | `lerp` | `xnyn/math/lerp.hpp` | Branchless `a + t * (b - a)`, faster than `std::lerp` |
 | `Phasor` | `xnyn/osc/phasor.hpp` | Normalized phase accumulator, branchless wrap, supports negative and through-zero frequencies |
 

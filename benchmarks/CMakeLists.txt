@@ -1,4 +1,5 @@
 add_executable(xnyn_benchmarks
+        math/fast_tanh_bench.cpp
         math/lerp_bench.cpp
         osc/phasor_bench.cpp)
 

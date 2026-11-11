@@ -1,6 +1,7 @@
 include(Catch)
 
 add_executable(xnyn_tests
+        math/fast_tanh_tests.cpp
         math/lerp_tests.cpp
         osc/phasor_tests.cpp)
 
