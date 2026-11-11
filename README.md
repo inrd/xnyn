@@ -8,6 +8,7 @@ Minimalist, performance-focused C++20 DSP building blocks.
 
 | Block | Header | Description |
 |---|---|---|
+| `lerp` | `xnyn/math/lerp.hpp` | Branchless `a + t * (b - a)`, faster than `std::lerp` |
 | `Phasor` | `xnyn/osc/phasor.hpp` | Normalized phase accumulator, branchless wrap, supports negative and through-zero frequencies |
 
 ## Usage

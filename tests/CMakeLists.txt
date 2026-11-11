@@ -1,6 +1,7 @@
 include(Catch)
 
 add_executable(xnyn_tests
+        math/lerp_tests.cpp
         osc/phasor_tests.cpp)
 
 target_link_libraries(xnyn_tests PRIVATE xnyn::xnyn Catch2::Catch2WithMain)
