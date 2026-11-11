@@ -9,6 +9,7 @@ Minimalist, performance-focused C++20 DSP building blocks.
 | Block | Header | Description |
 |---|---|---|
 | [`DcBlocker`](docs/filter/dc_blocker.md) | `xnyn/filter/dc_blocker.hpp` | One-pole DC blocker, cutoff in Hz, no step overshoot, `double` state for low cutoffs |
+| [`bilerp`](docs/math/bilerp.md) | `xnyn/math/bilerp.hpp` | Branchless bilinear interpolation between four corners, exact for constant fields |
 | [`equalPowerCrossfade`](docs/math/equal_power_crossfade.md) | `xnyn/math/equal_power_crossfade.hpp` | Sine / cosine crossfade with constant power, gains via `fastSin`, exact endpoints |
 | [`fastSin`](docs/math/fast_sin.md) | `xnyn/math/fast_sin.hpp` | Branchless polynomial `sin(2π·phase)`, phase in cycles, max abs error 6e-8 (double) / 2.1e-7 (float), FM-grade |
 | [`fastTanh`](docs/math/fast_tanh.md) | `xnyn/math/fast_tanh.hpp` | Branchless rational tanh approximation, max abs error 0.0236 |
