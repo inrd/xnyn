@@ -25,6 +25,10 @@ for (auto& sample : buffer) {
 }
 ```
 
+Processing is per-sample: blocks are header-only and non-virtual, so `tick()` inlines
+into your loop with no per-call overhead. Speed-ups come from vectorizing across voices,
+not across time.
+
 Include individual headers, or `<xnyn/xnyn.hpp>` for every block.
 
 ## Integration
