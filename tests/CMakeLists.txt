@@ -2,7 +2,8 @@ include(Catch)
 
 add_executable(xnyn_tests
         filter/dc_blocker_tests.cpp
-        math/bilerp_tests.cpp        math/equal_power_crossfade_tests.cpp        math/fast_sin_tests.cpp
+        math/bilerp_tests.cpp        math/equal_power_crossfade_tests.cpp        math/fast_pow_tests.cpp
+        math/fast_sin_tests.cpp
         math/fast_tanh_tests.cpp
         math/lerp_tests.cpp
         osc/phasor_tests.cpp
