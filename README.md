@@ -8,6 +8,7 @@ Minimalist, performance-focused C++20 DSP building blocks.
 
 | Block | Header | Description |
 |---|---|---|
+| [`DcBlocker`](docs/filter/dc_blocker.md) | `xnyn/filter/dc_blocker.hpp` | One-pole DC blocker, cutoff in Hz, no step overshoot, `double` state for low cutoffs |
 | [`fastTanh`](docs/math/fast_tanh.md) | `xnyn/math/fast_tanh.hpp` | Branchless rational tanh approximation, max abs error 0.0236 |
 | [`lerp`](docs/math/lerp.md) | `xnyn/math/lerp.hpp` | Branchless `a + t * (b - a)`, faster than `std::lerp` |
 | [`Phasor`](docs/osc/phasor.md) | `xnyn/osc/phasor.hpp` | Normalized phase accumulator, branchless wrap, supports negative and through-zero frequencies |

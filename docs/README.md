@@ -21,6 +21,12 @@ rules every block follows see [CONVENTIONS.md](../CONVENTIONS.md).
 
 ## Blocks
 
+### filter
+
+| Block | Header | Summary |
+|---|---|---|
+| [`DcBlocker`](filter/dc_blocker.md) | `xnyn/filter/dc_blocker.hpp` | One-pole DC blocker, cutoff in Hz, no overshoot |
+
 ### math
 
 | Block | Header | Summary |
