@@ -17,6 +17,7 @@ required, but never at the cost of per-sample speed.
   (add new ones only when a block clearly fits none of these).
 - Every header has a matching test file: `tests/<category>/<block>_tests.cpp`.
 - Performance-sensitive blocks have a benchmark: `benchmarks/<category>/<block>_bench.cpp`.
+- Every header has a matching doc page: `docs/<category>/<block>.md`.
 - New headers are added to `include/xnyn/xnyn.hpp`, new test and benchmark files to the
   matching `CMakeLists.txt`.
 
@@ -94,6 +95,23 @@ Tests use Catch2 v3, tagged `[<category>][<block>]`. Benchmarks are tagged
 
 - Explain *why* (numerical traps, performance choices), not *what*.
 - Each block opens with a short comment stating what it does, its units and ranges.
+
+## Documentation
+
+User docs are plain Markdown in `docs/`, no generator. Header comments explain the
+implementation; doc pages explain usage. Keep them in sync in the same commit.
+
+- Adding a block: create `docs/<category>/<block>.md` and add a row to the block
+  tables in both `docs/README.md` and the root `README.md`.
+- Changing a block's API, behaviour, ranges, error bounds or performance
+  characteristics: update its doc page.
+- Removing or renaming a block: update or remove its page and table rows.
+- Each page follows the same structure (see existing pages): title, include line, a
+  one-line purpose, then `API` (signatures with units and ranges), `Usage` (a short,
+  realistic example), behaviour / accuracy / trade-off sections as relevant, and
+  `Performance` (what makes it fast and which benchmark backs it).
+- Figures (error bounds, ranges, resolutions) must match the header comments and
+  what the tests enforce. Don't quote benchmark timings: they are machine-dependent.
 
 ## Formatting
 

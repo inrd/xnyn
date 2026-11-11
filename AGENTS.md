@@ -5,6 +5,8 @@ performance.
 
 - Read and follow `CONVENTIONS.md` before adding or changing any block.
 - Every new or changed block needs tests; performance-sensitive blocks need a benchmark.
+- Every new or changed block needs its doc page in `docs/` updated, plus the block
+  tables in `docs/README.md` and `README.md` (see "Documentation" in `CONVENTIONS.md`).
 - Before finishing, build and run the tests:
   ```sh
   cmake --preset debug && cmake --build --preset debug && ctest --preset debug
