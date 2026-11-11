@@ -22,6 +22,18 @@ struct FmodPhasor {
   }
 };
 
+// Previous xnyn::Phasor: double accumulator wrapped with a branchless floor. Kept to
+// justify the fixed-point accumulator, whose loop-carried chain is a single integer add.
+struct FloorPhasor {
+  double phase = 0.0;
+  double delta = 0.0;
+  void advance() {
+    const double x = phase + delta;
+    const double w = x - std::floor(x);
+    phase = w < 1.0 ? w : 0.0;
+  }
+};
+
 // Audio-rate frequency modulation crossing zero, precomputed outside the timed loop.
 std::vector<double> makeFmFreqs() {
   std::vector<double> f(kBlock);
@@ -52,6 +64,17 @@ TEST_CASE("Phasor through-zero FM", "[benchmark][osc][phasor]") {
       p.delta = f * kInvSR;
       p.advance();
       acc += p.phase;
+    }
+    return acc;
+  };
+
+  BENCHMARK("double floor baseline") {
+    FloorPhasor p;
+    double acc = 0.0;
+    for (const double f : freqs) {
+      p.delta = f * kInvSR;
+      acc += p.phase;
+      p.advance();
     }
     return acc;
   };

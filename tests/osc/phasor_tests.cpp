@@ -81,6 +81,16 @@ TEST_CASE("Phasor handles increments larger than one cycle", "[osc][phasor]") {
     CHECK(p.phase() == 0.5);
   }
 
+  SECTION("huge increments keep only the fractional cycle") {
+    p.setFrequency((0x1p40 + 0.25) * kSR);
+    p.advance();
+    CHECK(p.phase() == 0.25);
+    p.setFrequency(-(0x1p40 + 0.25) * kSR);
+    p.advance();
+    p.advance();
+    CHECK(p.phase() == 0.75);
+  }
+
   SECTION("whole number of cycles leaves phase unchanged") {
     p.reset(0.3);
     p.setFrequency(-3.0 * 1024.0);  // -3 cycles
@@ -180,6 +190,41 @@ TEST_CASE("Phasor does not drift over a long run", "[osc][phasor]") {
     // circular distance so 0.9999.. vs 0.0000.. counts as close
     double err = std::fabs(p.phase() - expected);
     err = std::min(err, 1.0 - err);
-    CHECK(err < 1e-6);
+    CHECK(err < 1e-9);
   }
+}
+
+TEST_CASE("Phasor largest phase below one stays below one", "[osc][phasor]") {
+  xnyn::Phasor p;
+  p.prepare(kSR);
+  const double justBelowOne = std::nextafter(1.0, 0.0);
+  p.reset(justBelowOne);
+  CHECK(p.phase() == justBelowOne);
+  p.reset(-std::nextafter(0.0, 1.0));  // smallest negative: rounds to zero, not one
+  checkInRange(p);
+}
+
+TEST_CASE("Phasor half-cycle increments are exact in both directions", "[osc][phasor]") {
+  for (const double hz : {512.0, -512.0}) {  // Nyquist: +/- 0.5 cycle
+    INFO("freq " << hz);
+    xnyn::Phasor p;
+    p.prepare(kSR);
+    p.setFrequency(hz);
+    for (const double e : {0.5, 0.0, 0.5, 0.0}) {
+      p.advance();
+      CHECK(p.phase() == e);
+    }
+  }
+}
+
+TEST_CASE("Phasor is exactly periodic for rational frequencies", "[osc][phasor]") {
+  // 441 Hz at 44100 Hz: 1/100 cycle per sample isn't representable, but the error of the
+  // quantized increment is below 2^-63 cycle, so 100 * 1000 steps land on zero.
+  xnyn::Phasor p;
+  p.prepare(44100.0);
+  p.setFrequency(441.0);
+  for (int i = 0; i < 100000; ++i) p.advance();
+  double err = p.phase();
+  err = std::min(err, 1.0 - err);
+  CHECK(err < 1e-12);
 }
