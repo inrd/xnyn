@@ -125,8 +125,11 @@ template <typename T>
                     u4 * T(0.1258370588531479042629182));
   const T exponent = static_cast<T>(e) - (denormal ? T(Traits::kDenormalShift) : T(0));
   const T y = exponent + u * p;
-  // Edge cases as selects. NaN fails both comparisons and falls through to NaN.
-  const T edge = x == T(0) ? -kInf : (x > T(0) ? x : std::numeric_limits<T>::quiet_NaN());
+  // Edge cases as selects: +inf stays, negative gives NaN, +-0 gives -inf, and NaN fails
+  // every comparison and returns itself. Ordered comparisons rather than x == 0 keep
+  // -Wfloat-equal quiet; this order also keeps the loop vectorizable for clang (other
+  // spellings tipped its cost model, halving fastPow throughput).
+  const T edge = x > T(0) ? x : (x < T(0) ? std::numeric_limits<T>::quiet_NaN() : (x >= T(0) ? -kInf : x));
   return (x > T(0) && x < kInf) ? y : edge;
 }
 
@@ -138,7 +141,9 @@ template <typename T>
   requires std::same_as<T, float> || std::same_as<T, double>
 [[nodiscard]] constexpr T fastPow(T x, T y) noexcept {
   // Select so that pow(0, 0) and pow(inf, 0) are 1 as with std::pow (0 * -inf is NaN).
-  return y == T(0) ? T(1) : fastExp2(y * fastLog2(x));
+  // y == 0 spelled with ordered comparisons (false for NaN, like ==) for -Wfloat-equal.
+  const bool yIsZero = y >= T(0) && y <= T(0);
+  return yIsZero ? T(1) : fastExp2(y * fastLog2(x));
 }
 
 }  // namespace xnyn

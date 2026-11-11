@@ -8,6 +8,7 @@ add_executable(xnyn_tests
         math/fast_tanh_tests.cpp
         math/lerp_tests.cpp
         osc/phasor_tests.cpp
+        strict_warnings_tests.cpp
         util/sanitize_tests.cpp
         util/sanitize_fast_math_tests.cpp)
 
@@ -20,5 +21,9 @@ target_compile_options(xnyn_tests PRIVATE
 # Proves sanitize survives the optimizer assuming NaN / inf never occur.
 set_source_files_properties(util/sanitize_fast_math_tests.cpp PROPERTIES COMPILE_OPTIONS
         "$<$<CXX_COMPILER_ID:Clang,AppleClang,GNU>:-ffast-math;-O2>;$<$<CXX_COMPILER_ID:MSVC>:/fp:fast;/O2>")
+
+# Consumers build with stricter flags than the defaults above: keep the headers clean.
+set_source_files_properties(strict_warnings_tests.cpp PROPERTIES COMPILE_OPTIONS
+        "$<$<CXX_COMPILER_ID:Clang,AppleClang,GNU>:-Werror;-Wfloat-equal;-Wdouble-promotion;-Wsign-conversion;-Wold-style-cast;-Wcast-qual;-Wundef>;$<$<CXX_COMPILER_ID:MSVC>:/WX>")
 
 catch_discover_tests(xnyn_tests)

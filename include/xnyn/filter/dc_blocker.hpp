@@ -49,7 +49,7 @@ class DcBlocker {
   }
 
   [[nodiscard]] T tick(T x) noexcept {
-    const State xs = x;
+    const State xs = static_cast<State>(x);
     const State y = xs - x1_ + r_ * y1_;
     x1_ = xs;
     y1_ = y;
