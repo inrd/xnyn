@@ -2,7 +2,6 @@
 #include <catch2/catch_test_macros.hpp>
 
 #include <cmath>
-#include <numbers>
 #include <vector>
 
 #include "xnyn/osc/phasor.hpp"
@@ -13,14 +12,13 @@ constexpr int kBlock = 4096;
 constexpr double kSR = 48000.0;
 constexpr double kInvSR = 1.0 / kSR;
 
-// Naive baseline: phase in radians, wrapped with fmod plus a branch for negatives.
+// Naive baseline: same normalized phase, wrapped with fmod plus a branch for negatives.
 struct FmodPhasor {
   double phase = 0.0;
   double delta = 0.0;
   void advance() {
-    constexpr double twoPi = 2.0 * std::numbers::pi;
-    phase = std::fmod(phase + delta, twoPi);
-    if (phase < 0.0) phase += twoPi;
+    phase = std::fmod(phase + delta, 1.0);
+    if (phase < 0.0) phase += 1.0;
   }
 };
 
@@ -51,7 +49,7 @@ TEST_CASE("Phasor through-zero FM", "[benchmark][osc][phasor]") {
     FmodPhasor p;
     double acc = 0.0;
     for (const double f : freqs) {
-      p.delta = 2.0 * std::numbers::pi * f * kInvSR;
+      p.delta = f * kInvSR;
       p.advance();
       acc += p.phase;
     }
