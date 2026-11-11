@@ -6,6 +6,22 @@
 
 namespace xnyn {
 
+namespace detail {
+
+// cos(2 pi z) for z in [-1/4, 1/4]: the polynomial kernel of fastSin, without its range
+// reduction. Shared so callers whose argument is already in range (e.g. crossfade gains)
+// skip the reduction and stay bit-identical to fastSin. See fastSin for the derivation.
+// Max absolute error 5.98e-8 (polynomial), exact 1 at z = 0 and 0 at z = +-1/4.
+template <std::floating_point T>
+[[nodiscard]] constexpr T cosQuarterCycle(T z) noexcept {
+  const T s = z * z;
+  const T s2 = s * s;
+  return (T(0.0625) - s) * ((T(16) + s * T(-59.82686786041409471231193)) +
+                            s2 * (T(81.72843751433724633433317) + s * T(-56.24296323750762340648717)));
+}
+
+}  // namespace detail
+
 // Polynomial approximation of sin(2 pi x), with the phase x in cycles (e.g. Phasor output).
 //
 // Accurate enough for wide-deviation FM, where the approximation error is scaled by the
@@ -49,11 +65,7 @@ template <std::floating_point T>
   const auto n = static_cast<std::int64_t>(std::min(kLimit, std::max(-kLimit, x + x)));
   const T h = x - static_cast<T>(n) * T(0.5);
   const T a = h < T(0) ? -h : h;
-  const T z = a - T(0.25);
-  const T s = z * z;
-  const T s2 = s * s;
-  const T c = (T(0.0625) - s) * ((T(16) + s * T(-59.82686786041409471231193)) +
-                                 s2 * (T(81.72843751433724633433317) + s * T(-56.24296323750762340648717)));
+  const T c = detail::cosQuarterCycle(a - T(0.25));
   // Selects, not branches.
   const bool negate = (h < T(0)) != ((n & 1) != 0);
   return negate ? -c : c;

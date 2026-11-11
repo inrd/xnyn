@@ -31,6 +31,7 @@ rules every block follows see [CONVENTIONS.md](../CONVENTIONS.md).
 
 | Block | Header | Summary |
 |---|---|---|
+| [`equalPowerCrossfade`](math/equal_power_crossfade.md) | `xnyn/math/equal_power_crossfade.hpp` | Sine / cosine crossfade with constant power, gains via `fastSin` |
 | [`fastSin`](math/fast_sin.md) | `xnyn/math/fast_sin.hpp` | Branchless polynomial `sin(2π·phase)`, phase in cycles, max abs error 6e-8 (double) |
 | [`fastTanh`](math/fast_tanh.md) | `xnyn/math/fast_tanh.hpp` | Branchless rational tanh approximation, max abs error 0.0236 |
 | [`lerp`](math/lerp.md) | `xnyn/math/lerp.hpp` | Branchless `a + t * (b - a)`, faster than `std::lerp` |

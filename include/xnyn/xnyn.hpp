@@ -3,6 +3,7 @@
 // Convenience header: includes every block.
 
 #include "xnyn/filter/dc_blocker.hpp"
+#include "xnyn/math/equal_power_crossfade.hpp"
 #include "xnyn/math/fast_sin.hpp"
 #include "xnyn/math/fast_tanh.hpp"
 #include "xnyn/math/lerp.hpp"
