@@ -8,6 +8,7 @@ Minimalist, performance-focused C++20 DSP building blocks.
 
 | Block | Header | Description |
 |---|---|---|
+| [`DelayLine`](docs/delay/delay_line.md) | `xnyn/delay/delay_line.hpp` | Power-of-two circular buffer, branchless masked integer and linear reads, position-independent fractional resolution |
 | [`DcBlocker`](docs/filter/dc_blocker.md) | `xnyn/filter/dc_blocker.hpp` | One-pole DC blocker, cutoff in Hz, no step overshoot, `double` state for low cutoffs |
 | [`bilerp`](docs/math/bilerp.md) | `xnyn/math/bilerp.hpp` | Branchless bilinear interpolation between four corners, exact for constant fields |
 | [`dbToGain` / `gainToDb`](docs/math/decibels.md) | `xnyn/math/decibels.hpp` | Branchless dB ↔ gain conversions via `fastExp2` / `fastLog2`, magnitude-based, optional dB floor |

@@ -26,6 +26,14 @@ TEMPLATE_TEST_CASE("Every block compiles cleanly under strict warnings", "[stric
   acc += xnyn::sanitize(x);
   acc += xnyn::isFinite(x) ? T(1) : T(0);
 
+  xnyn::DelayLine<T> delay;
+  delay.prepare(48000.0, 0.01);
+  delay.write(x);
+  acc += delay.read(1);
+  acc += delay.readLinear(T(1.5));
+  acc += static_cast<T>(delay.maxDelaySamples());
+  delay.reset();
+
   xnyn::DcBlocker<T> dc;
   dc.prepare(48000.0);
   dc.setCutoff(T(10));

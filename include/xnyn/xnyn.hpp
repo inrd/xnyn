@@ -2,6 +2,7 @@
 
 // Convenience header: includes every block.
 
+#include "xnyn/delay/delay_line.hpp"
 #include "xnyn/filter/dc_blocker.hpp"
 #include "xnyn/math/bilerp.hpp"
 #include "xnyn/math/decibels.hpp"

@@ -13,7 +13,7 @@ required, but never at the cost of per-sample speed.
 ## Layout
 
 - One block per header: `include/xnyn/<category>/<block>.hpp`
-  (e.g. `osc/phasor.hpp`). Categories: `osc`, `filter`, `env`, `math`, `util`
+  (e.g. `osc/phasor.hpp`). Categories: `osc`, `filter`, `delay`, `env`, `math`, `util`
   (add new ones only when a block clearly fits none of these).
 - Every header has a matching test file: `tests/<category>/<block>_tests.cpp`.
 - Performance-sensitive blocks have a benchmark: `benchmarks/<category>/<block>_bench.cpp`.
@@ -32,7 +32,12 @@ required, but never at the cost of per-sample speed.
     (e.g. `1 / sampleRate`, so per-sample code multiplies instead of divides).
     Parameters keep their physical values and are re-derived. It then calls
     `reset()`, so a prepared block is always in a known state (like a plugin's
-    `prepareToPlay`, it is not meant to be called mid-stream). It never allocates.
+    `prepareToPlay`, it is not meant to be called mid-stream).
+  - `prepare` is the only place a block may allocate, and only blocks that need memory
+    whose size depends on the sample rate (e.g. delay lines). Such a `prepare` takes
+    its size in physical units (e.g. `maxDelaySeconds`), may throw `std::bad_alloc`
+    (so it is not `noexcept`), reuses its memory when the size is unchanged, and is
+    documented as not real-time safe. Copying is deleted; moving is allowed.
   - `reset(...)` restores a known state; it never allocates.
   - A default-constructed block is safe to use before `prepare`: it produces
     finite, neutral output (silence or pass-through), including after setters
@@ -54,7 +59,8 @@ required, but never at the cost of per-sample speed.
 ## Performance
 
 - Real-time safe: no allocation, exceptions, locks, I/O or virtual calls in
-  `prepare`, `reset`, setters or processing functions. Mark them `noexcept`.
+  `prepare`, `reset`, setters or processing functions. Mark them `noexcept`. The one
+  exception is an allocating `prepare` (see Lifecycle).
 - Processors (`tick(x)`) are templated on the sample type:
   `template <std::floating_point T = float>`, so `xnyn::Block b;` is `float`.
   Internal state may use higher precision where needed; say why in a comment.

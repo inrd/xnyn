@@ -11,7 +11,8 @@ rules every block follows see [CONVENTIONS.md](../CONVENTIONS.md).
 - Every block is header-only and lives in namespace `xnyn`. Include a single header,
   or `<xnyn/xnyn.hpp>` for everything.
 - Everything that processes audio is `noexcept`, never allocates and never locks, so it is
-  safe to call on the audio thread.
+  safe to call on the audio thread. The only allocations happen in `prepare` of blocks
+  that need memory (delay lines), which, like `prepareToPlay`, is not real-time safe.
 - Classes follow the same lifecycle: `prepare(sampleRate)` → setters → `tick()` per
   sample, with `reset()` to return to a known state. A default-constructed block
   produces neutral, finite output before `prepare` is called.
@@ -20,6 +21,12 @@ rules every block follows see [CONVENTIONS.md](../CONVENTIONS.md).
 - Denormals are the caller's responsibility: enable FTZ/DAZ on the audio thread.
 
 ## Blocks
+
+### delay
+
+| Block | Header | Summary |
+|---|---|---|
+| [`DelayLine`](delay/delay_line.md) | `xnyn/delay/delay_line.hpp` | Circular buffer with branchless integer and linear reads, allocates in `prepare` |
 
 ### filter
 

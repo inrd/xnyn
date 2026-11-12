@@ -1,6 +1,7 @@
 include(Catch)
 
 add_executable(xnyn_tests
+        delay/delay_line_tests.cpp
         filter/dc_blocker_tests.cpp
         math/bilerp_tests.cpp        math/decibels_tests.cpp
         math/equal_power_crossfade_tests.cpp        math/fast_pow_tests.cpp
