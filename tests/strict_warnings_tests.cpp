@@ -40,5 +40,15 @@ TEMPLATE_TEST_CASE("Every block compiles cleanly under strict warnings", "[stric
   acc += static_cast<T>(phasor.phase());
   phasor.reset();
 
+  xnyn::Smoother<T> smoother;
+  smoother.prepare(48000.0);
+  smoother.setTimeMs(T(10));
+  smoother.setTarget(x);
+  acc += smoother.tick();
+  smoother.advance();
+  acc += smoother.value();
+  smoother.reset();
+  smoother.reset(x);
+
   CHECK(xnyn::isFinite(acc));
 }

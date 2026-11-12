@@ -18,6 +18,7 @@ Minimalist, performance-focused C++20 DSP building blocks.
 | [`lerp`](docs/math/lerp.md) | `xnyn/math/lerp.hpp` | Branchless `a + t * (b - a)`, faster than `std::lerp` |
 | [`Phasor`](docs/osc/phasor.md) | `xnyn/osc/phasor.hpp` | Normalized phase accumulator, branchless wrap, supports negative and through-zero frequencies |
 | [`isFinite` / `sanitize`](docs/util/sanitize.md) | `xnyn/util/sanitize.hpp` | NaN / inf guards that survive `-ffast-math` |
+| [`Smoother`](docs/util/smoother.md) | `xnyn/util/smoother.hpp` | One-pole parameter smoother, time constant in ms, no overshoot, `double` state so `float` lands on target |
 
 See [docs/](docs/README.md) for per-block documentation.
 

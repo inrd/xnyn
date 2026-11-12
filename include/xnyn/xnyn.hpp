@@ -12,3 +12,4 @@
 #include "xnyn/math/lerp.hpp"
 #include "xnyn/osc/phasor.hpp"
 #include "xnyn/util/sanitize.hpp"
+#include "xnyn/util/smoother.hpp"

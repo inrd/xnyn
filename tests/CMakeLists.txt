@@ -10,7 +10,8 @@ add_executable(xnyn_tests
         osc/phasor_tests.cpp
         strict_warnings_tests.cpp
         util/sanitize_tests.cpp
-        util/sanitize_fast_math_tests.cpp)
+        util/sanitize_fast_math_tests.cpp
+        util/smoother_tests.cpp)
 
 target_link_libraries(xnyn_tests PRIVATE xnyn::xnyn Catch2::Catch2WithMain)
 

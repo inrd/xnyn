@@ -50,3 +50,4 @@ rules every block follows see [CONVENTIONS.md](../CONVENTIONS.md).
 | Block | Header | Summary |
 |---|---|---|
 | [`isFinite` / `sanitize`](util/sanitize.md) | `xnyn/util/sanitize.hpp` | NaN / inf guards that survive `-ffast-math` |
+| [`Smoother`](util/smoother.md) | `xnyn/util/smoother.hpp` | One-pole parameter smoother, time constant in ms, no overshoot |
