@@ -12,5 +12,6 @@
 #include "xnyn/math/fast_tanh.hpp"
 #include "xnyn/math/lerp.hpp"
 #include "xnyn/osc/phasor.hpp"
+#include "xnyn/osc/white_noise.hpp"
 #include "xnyn/util/sanitize.hpp"
 #include "xnyn/util/smoother.hpp"

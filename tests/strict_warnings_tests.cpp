@@ -48,6 +48,14 @@ TEMPLATE_TEST_CASE("Every block compiles cleanly under strict warnings", "[stric
   acc += static_cast<T>(phasor.phase());
   phasor.reset();
 
+  xnyn::WhiteNoise noise;
+  noise.prepare(48000.0);
+  noise.reset(42);
+  acc += static_cast<T>(noise.tick());
+  noise.advance();
+  acc += static_cast<T>(noise.value());
+  noise.reset();
+
   xnyn::Smoother<T> smoother;
   smoother.prepare(48000.0);
   smoother.setTimeMs(T(10));

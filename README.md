@@ -18,6 +18,7 @@ Minimalist, performance-focused C++20 DSP building blocks.
 | [`fastTanh`](docs/math/fast_tanh.md) | `xnyn/math/fast_tanh.hpp` | Branchless rational tanh approximation, max abs error 0.0236 |
 | [`lerp`](docs/math/lerp.md) | `xnyn/math/lerp.hpp` | Branchless `a + t * (b - a)`, faster than `std::lerp` |
 | [`Phasor`](docs/osc/phasor.md) | `xnyn/osc/phasor.hpp` | Normalized phase accumulator, branchless wrap, supports negative and through-zero frequencies |
+| [`WhiteNoise`](docs/osc/white_noise.md) | `xnyn/osc/white_noise.hpp` | Uniform white noise in (-1, 1), 64-bit LCG with exponent-bit float conversion, zero-mean, seedable, period 2^64 |
 | [`isFinite` / `sanitize`](docs/util/sanitize.md) | `xnyn/util/sanitize.hpp` | NaN / inf guards that survive `-ffast-math` |
 | [`Smoother`](docs/util/smoother.md) | `xnyn/util/smoother.hpp` | One-pole parameter smoother, time constant in ms, no overshoot, `double` state so `float` lands on target |
 
