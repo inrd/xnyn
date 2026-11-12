@@ -7,6 +7,7 @@ add_executable(xnyn_benchmarks
         math/fast_tanh_bench.cpp
         math/lerp_bench.cpp
         osc/phasor_bench.cpp
+        osc/pink_noise_bench.cpp
         osc/white_noise_bench.cpp
         util/sanitize_bench.cpp
         util/smoother_bench.cpp)

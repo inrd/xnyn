@@ -51,6 +51,7 @@ rules every block follows see [CONVENTIONS.md](../CONVENTIONS.md).
 | Block | Header | Summary |
 |---|---|---|
 | [`Phasor`](osc/phasor.md) | `xnyn/osc/phasor.hpp` | Normalized phase accumulator in `[0, 1)`, drift-free, through-zero capable |
+| [`PinkNoise`](osc/pink_noise.md) | `xnyn/osc/pink_noise.hpp` | 1/f noise within 0.35 dB over 20 Hz – 20 kHz, at any sample rate |
 | [`WhiteNoise`](osc/white_noise.md) | `xnyn/osc/white_noise.hpp` | Uniform white noise in `(-1, 1)`, zero-mean, seedable, period 2^64 |
 
 ### util

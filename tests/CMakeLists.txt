@@ -9,6 +9,7 @@ add_executable(xnyn_tests
         math/fast_tanh_tests.cpp
         math/lerp_tests.cpp
         osc/phasor_tests.cpp
+        osc/pink_noise_tests.cpp
         osc/white_noise_tests.cpp
         strict_warnings_tests.cpp
         util/sanitize_tests.cpp
