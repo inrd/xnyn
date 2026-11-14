@@ -6,6 +6,7 @@ add_executable(xnyn_tests
         math/bilerp_tests.cpp        math/decibels_tests.cpp
         math/equal_power_crossfade_tests.cpp        math/fast_pow_tests.cpp
         math/fast_sin_tests.cpp
+        math/fast_tan_tests.cpp
         math/fast_tanh_tests.cpp
         math/lerp_tests.cpp
         osc/phasor_tests.cpp

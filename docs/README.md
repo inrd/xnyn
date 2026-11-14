@@ -43,6 +43,7 @@ rules every block follows see [CONVENTIONS.md](../CONVENTIONS.md).
 | [`equalPowerCrossfade`](math/equal_power_crossfade.md) | `xnyn/math/equal_power_crossfade.hpp` | Sine / cosine crossfade with constant power, gains via `fastSin` |
 | [`fastExp2` / `fastLog2` / `fastPow`](math/fast_pow.md) | `xnyn/math/fast_pow.hpp` | Branchless polynomial `2^x`, `log2` and `pow`, max rel error 2e-9 / 2.7e-8 (double) |
 | [`fastSin`](math/fast_sin.md) | `xnyn/math/fast_sin.hpp` | Branchless polynomial `sin(2π·phase)`, phase in cycles, max abs error 6e-8 (double) |
+| [`fastTanPi`](math/fast_tan.md) | `xnyn/math/fast_tan.hpp` | Branchless rational `tan(π·x)` for filter prewarping, max rel error 4.5e-8 (double) up to Nyquist |
 | [`fastTanh`](math/fast_tanh.md) | `xnyn/math/fast_tanh.hpp` | Branchless rational tanh approximation, max abs error 0.0236 |
 | [`lerp`](math/lerp.md) | `xnyn/math/lerp.hpp` | Branchless `a + t * (b - a)`, faster than `std::lerp` |
 

@@ -4,6 +4,7 @@ add_executable(xnyn_benchmarks
         math/bilerp_bench.cpp        math/decibels_bench.cpp
         math/equal_power_crossfade_bench.cpp        math/fast_pow_bench.cpp
         math/fast_sin_bench.cpp
+        math/fast_tan_bench.cpp
         math/fast_tanh_bench.cpp
         math/lerp_bench.cpp
         osc/phasor_bench.cpp

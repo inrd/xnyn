@@ -9,6 +9,7 @@
 #include "xnyn/math/equal_power_crossfade.hpp"
 #include "xnyn/math/fast_pow.hpp"
 #include "xnyn/math/fast_sin.hpp"
+#include "xnyn/math/fast_tan.hpp"
 #include "xnyn/math/fast_tanh.hpp"
 #include "xnyn/math/lerp.hpp"
 #include "xnyn/osc/phasor.hpp"

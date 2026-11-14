@@ -21,6 +21,7 @@ TEMPLATE_TEST_CASE("Every block compiles cleanly under strict warnings", "[stric
   acc += xnyn::fastLog2(x);
   acc += xnyn::fastPow(x, x);
   acc += xnyn::fastSin(x);
+  acc += xnyn::fastTanPi(x);
   acc += xnyn::fastTanh(x);
   acc += xnyn::lerp(x, x, x);
   acc += xnyn::sanitize(x);

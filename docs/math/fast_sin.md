@@ -72,7 +72,7 @@ modulator self-feedback the mean modulator frequency matches within `1e-6` relat
 - The bound is absolute, not relative: near zero the relative error grows. For coefficients
   computed only on parameter changes (e.g. very low filter cutoffs in `float`), prefer
   `std::sin`, which is cheap there and fully precise.
-- Sine only: `tan` (bilinear prewarping) needs its own approximation.
+- Sine only: for `tan` (bilinear prewarping) use [`fastTanPi`](fast_tan.md).
 
 ## Trade-offs
 
